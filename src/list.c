@@ -32,9 +32,18 @@ ElementType pop(plist *this)
     return retn;
     
 }
-//diff必须小于node个数
+//diff必须小于等于node个数
 void insertNode(plist *this, ElementType element, size_t diff)
 {
+    pnode curr, temp = this[0];
+    createNode(&curr, element);
+    int i = 0;
+    while (temp->next != NULL && i < diff && (temp = temp->next))
+        ++i;
+    pnode t = temp->next;
+    temp->next = curr;
+    curr->next = t;
+ 
 }
 
 ElementType removeNode(plist* this, size_t diff){
