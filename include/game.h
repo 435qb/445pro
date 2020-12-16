@@ -2,20 +2,14 @@
 #define _game_h
 
 #define NAME_MAX 100
-#include <stdio.h>
-
-typedef struct VIP
-{
-    int _id;
-    char _name[NAME_MAX + 1];
-    house *_house;
-} vip;
+#include <stdlib.h>
 
 typedef struct USER
 {
     int _id;
     char _name[NAME_MAX + 1];
 } user;
+
 typedef struct HOUSE
 {
     int _id;
@@ -24,6 +18,16 @@ typedef struct HOUSE
     int _is_rent;
     user *_user; //入住人
 } house;
+
+typedef struct VIP
+{
+    int _id;
+    char _name[NAME_MAX + 1];
+    house *_house;
+} vip;
+
+
+
 // _is_bought 1 _is_rent 0 _human 0 空置
 // _is_bought 0 未购买
 // _is_bought 1 _is_rent 1 租借
