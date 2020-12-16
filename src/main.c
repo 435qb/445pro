@@ -5,12 +5,13 @@
 int main(){
     while(1){
         int choose;
-        printf("1.浼氬憳绠＄悊\n");
-        printf("2.鎴垮眿绠＄悊\n");
-        printf("3.鍏ヤ綇绠＄悊\n");
-        printf("4.璁炬柦绠＄悊\n");
-        printf("5.鐢ㄦ埛绠＄悊\n");
+        printf("1.会员管理\n");
+        printf("2.房屋管理\n");
+        printf("3.入住管理\n");
+        printf("4.设施管理\n");
+        printf("5.用户管理\n");
         scanf("%d",&choose);
+        
         switch(choose){
         case 1:
             manage_vips();
