@@ -56,6 +56,9 @@ INIT(user);
 INIT(house);
 INIT(facil);
 INIT(worker);
+//跟其他的不一样
+INIT(queue);
+queue queuePop(queueList **wl);
 #undef INIT
 
 void manage_vips();
