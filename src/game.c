@@ -10,11 +10,11 @@ void manage_vips()
 {
     while (1)
     {
-        printf("1.鏂板缓浼氬憳\n");
-        printf("2.鏌ヨ浼氬憳\n");
-        printf("3.淇敼浼氬憳\n");
-        printf("4.鍒犻櫎浼氬憳\n");
-        printf("5.杩斿洖\n");
+        printf("1.新建会员\n");
+        printf("2.查询会员\n");
+        printf("3.修改会员\n");
+        printf("4.删除会员\n");
+        printf("5.返回\n");
         int choose;
         scanf("%d", &choose);
         switch (choose)
