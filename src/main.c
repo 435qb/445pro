@@ -18,7 +18,7 @@ int main()
             while(getchar() != '\n') continue;
             printf("ÎÞÐ§×Ö·û\n");
             continue;
-        }
+        }   
         switch (choose)
         {
         case 1:
