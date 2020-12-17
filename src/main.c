@@ -2,17 +2,25 @@
 //#include "list.h"
 #include "game.h"
 
-int main(){
-    while(1){
+int main()
+{
+    while (1)
+    {
         int choose;
         printf("1.会员管理\n");
         printf("2.房屋管理\n");
         printf("3.入住管理\n");
         printf("4.设施管理\n");
         printf("5.用户管理\n");
-        scanf("%d",&choose);
-        
-        switch(choose){
+        printf("6.退出\n");
+        if (scanf("%d", &choose) == 0)
+        {
+            while(getchar() != '\n') continue;
+            printf("无效字符\n");
+            continue;
+        }   
+        switch (choose)
+        {
         case 1:
             manage_vips();
             break;
@@ -28,10 +36,11 @@ int main(){
         case 5:
             manage_accounts();
             break;
+        case 6:
+            return 0;
         default:
+            printf("无效字符\n");
             break;
         }
-    }   
-
-    return 0;
+    }
 }
