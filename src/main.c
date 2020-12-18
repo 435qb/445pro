@@ -1,9 +1,10 @@
 #include <stdio.h>
 //#include "list.h"
 #include "game.h"
-
+#include "test.h"
 int main()
 {
+   // init();
     while (1)
     {
         int choose;
