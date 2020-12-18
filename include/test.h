@@ -1,6 +1,7 @@
 #ifndef _TEST_H
 #define _TEST_H
 #include "game.h"
+void init();
 //初始化id，house=null
 vip *createVip();
 //通过id返回会员结构体地址
@@ -11,8 +12,6 @@ void deleteVip(int id);
 void createHouse();
 //通过房屋id返回房屋地址 找不到返回NULL
 house *searchHouse(int id);
-//通过入住人id返回房屋地址 找不到返回NULL
-house *searchhouse(int id);
 //初始化facil的信息
 void createFacil();
 //初始化worker的信息
