@@ -3,6 +3,7 @@ static vipList *vipHead;
 static houseList *houseHead;
 static facilList *facilHead;
 static workerList *workerHead;
+static userlist *userHead;
 
 //初始化id，house=null
 
@@ -12,6 +13,8 @@ void init()
     house h;
     facil f;
     worker w;
+    user u;
+    userCreate(&userHead,&u);
     vipCreate(&vipHead, &v);
     houseCreate(&houseHead, &h);
     facilCreate(&facilHead, &f);
@@ -50,20 +53,6 @@ house *searchHouse(int id)
 {
     return houseSearch(&houseHead, id);
 }
-//更改房屋数据为入住状态
-
-//更改房屋数据为出租状态
-
-//更改房屋数据为空置状态
-
-//初始化facil的信息
-
-void facilinit()
-{
-    facil x;
-    x._id = 0;
-    facilCreate(&facilHead, &x);
-}
 
 facil *createFacil()
 {
@@ -75,14 +64,6 @@ facil *createFacil()
         ++facilId;
     return &f;
 }
-//初始化worker的信息
-void workerinit()
-{
-    worker x;
-    x._id = 0;
-    workerCreate(&workerHead, &x);
-}
-
 void createWorker()
 {
     static int workerId = 1;
@@ -92,14 +73,25 @@ void createWorker()
     return &w;
 }
 //通过id返回服务人员结构体地址 找不到返回NULL
-worker *searchWorker(int id) {}
+worker *searchWorker(int id) {
+       return searchWorker(&workerHead,id);
+}
 //通过id删除服务人员
-void deletework(int id) {}
+void deletework(int id) {
+    workerDelete(&workerHead,id);
+}
 //通过服务人员id返回入住人地址 找不到返回NULL
-user *searchworker(int id) {}
+user *searchworker(int id) {
+    worker *wk;
+    wk=workerSearch(&workerHead,id);
+    return wk->user;
+}
 //通过入住人id返回入住人地址 找不到返回NULL
-user *searchuser(int id) {}
+user *searchuser(int id) {
+    return userSearch(&userHead,id);
+}
 //通过场馆id返回：1成功 0等待
 int is_queue_full(int id)
 {
+
 }
