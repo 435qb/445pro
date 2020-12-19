@@ -317,40 +317,35 @@ void manage_lives()
 }
 void manage_facilities()
 {
-    printf("1.新建娱乐设施\n");
-    printf("2.返回\n");
-    int choose;
-    scanf("%d", &choose);
-    switch (choose)
+    while (1)
     {
-    case 1:
-        新建娱乐设施();
-    case 2:
-        return;
-    default:
-        printf("无效字符\n");
+        printf("1.新建娱乐设施\n");
+        printf("2.返回\n");
+        int choose;
+        ID_GET(choose);
+        switch (choose)
+        {
+        case 1:
+            新建娱乐设施();
+        case 2:
+            return;
+        default:
+            printf("无效字符\n");
+        }
     }
 }
-void manage_accounts()
+void 已有人员()
 {
-    printf("1.新增服务人员\n");
-    printf("2.已有人员\n");
-    printf("3.返回\n");
-    int choose1;
-    scanf("%d", &choose1);
-    switch (choose1)
+    while (1)
     {
-    case 1:
-        新增服务人员();
-    case 2:
         printf("1.修改服务人员\n");
         printf("2.删除服务人员\n");
         printf("3.查看服务对象\n");
         printf("4.设置服务对象\n");
         printf("5.返回\n");
-        int choose2;
-        scanf("%d", &choose2);
-        switch (choose2)
+        int choose;
+        ID_GET(choose);
+        switch (choose)
         {
         case 1:
             修改服务人员();
@@ -365,9 +360,27 @@ void manage_accounts()
         default:
             printf("无效字符\n");
         }
-    case 3:
-        return;
-    default:
-        printf("无效字符\n");
+    }
+}
+void manage_accounts()
+{
+    while (1)
+    {
+        printf("1.新增服务人员\n");
+        printf("2.已有人员\n");
+        printf("3.返回\n");
+        int choose1;
+        scanf("%d", &choose1);
+        switch (choose1)
+        {
+        case 1:
+            新增服务人员();
+        case 2:
+            已有人员();
+        case 3:
+            return;
+        default:
+            printf("无效字符\n");
+        }
     }
 }
