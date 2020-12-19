@@ -19,7 +19,7 @@ void queuePush(queueList **wl, const queue *w)\
         continue;\
     temp->next = curr;\
 }\
-//ä¸èƒ½ä¼ å…¥æŒ‡å‘nullçš„æŒ‡é’ˆ,å¿…é¡»æ˜¯å¤´èŠ‚ç‚¹
+//²»ÄÜ´«ÈëÖ¸ÏònullµÄÖ¸Õë,±ØĞëÊÇÍ·½Úµã
 queue queuePop(queueList **wl){
     queue retn = wl[0]->element;
     queueList* curr = wl[0]->next;
@@ -27,9 +27,9 @@ queue queuePop(queueList **wl){
     wl[0] = curr;
     return retn;
 }
-//è¢«å¼ƒç”¨çš„å‡½æ•°
+//±»ÆúÓÃµÄº¯Êı
 queue * queueSearch(queueList **wl, int id){return NULL;}
-//åŒæ ·è¢«å¼ƒç”¨
+//Í¬Ñù±»ÆúÓÃ
 void queueDelete(queueList **wl, int id){}
 
 void queueFree(queueList **wl){\

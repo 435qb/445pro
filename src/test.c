@@ -5,7 +5,7 @@ static facilList* facilHead;
 static workerList* workerHead;
 
 
-//åˆå§‹åŒ–idï¼Œhouse=null
+//³õÊ¼»¯id£¬house=null
 
  void Vipinit(){
      vip x;
@@ -21,15 +21,15 @@ vip *createVip(){
     ++vipId;
     return &v;
 }
-//é€šè¿‡idè¿”å›ä¼šå‘˜ç»“æ„ä½“åœ°å€
+//Í¨¹ıid·µ»Ø»áÔ±½á¹¹ÌåµØÖ·
 vip *searchVip(int id){
     return vipSearch(&viphead,id);
 }
-//é€šè¿‡idåˆ é™¤ä¼šå‘˜
+//Í¨¹ıidÉ¾³ı»áÔ±
 void deleteVip(int id){
     vipDelete(&viphead,id); 
 }
-//åˆå§‹åŒ–houseçš„ä¿¡æ¯
+//³õÊ¼»¯houseµÄĞÅÏ¢
 void houseinit(){
     house t;
     t._id = 0;
@@ -42,17 +42,17 @@ void createHouse(){
     housePush(&houseHead,&x);
     houseId++;
 }
-//é€šè¿‡æˆ¿å±‹idè¿”å›æˆ¿å±‹åœ°å€ æ‰¾ä¸åˆ°è¿”å›NULL
+//Í¨¹ı·¿Îİid·µ»Ø·¿ÎİµØÖ· ÕÒ²»µ½·µ»ØNULL
 house *searchHouse(int id){
     return houseSearch(&houseHead,id);
 }
-//æ›´æ”¹æˆ¿å±‹æ•°æ®ä¸ºå…¥ä½çŠ¶æ€
+//¸ü¸Ä·¿ÎİÊı¾İÎªÈë×¡×´Ì¬
 
-//æ›´æ”¹æˆ¿å±‹æ•°æ®ä¸ºå‡ºç§ŸçŠ¶æ€
+//¸ü¸Ä·¿ÎİÊı¾İÎª³ö×â×´Ì¬
 
-//æ›´æ”¹æˆ¿å±‹æ•°æ®ä¸ºç©ºç½®çŠ¶æ€
+//¸ü¸Ä·¿ÎİÊı¾İÎª¿ÕÖÃ×´Ì¬
 
-//åˆå§‹åŒ–facilçš„ä¿¡æ¯
+//³õÊ¼»¯facilµÄĞÅÏ¢
 
  void facilinit(){
      facil x;
@@ -68,7 +68,7 @@ void createFacil(){
     ++facilId;
     return &f;
 }
-//åˆå§‹åŒ–workerçš„ä¿¡æ¯
+//³õÊ¼»¯workerµÄĞÅÏ¢
  void workerinit(){
      worker x;
      x._id = 0;
@@ -82,15 +82,15 @@ void createWorker(){
     ++workerId;
     return &w;
 }
-//é€šè¿‡idè¿”å›æœåŠ¡äººå‘˜ç»“æ„ä½“åœ°å€ æ‰¾ä¸åˆ°è¿”å›NULL
+//Í¨¹ıid·µ»Ø·şÎñÈËÔ±½á¹¹ÌåµØÖ· ÕÒ²»µ½·µ»ØNULL
 worker *searchWorker(int id){}
-//é€šè¿‡idåˆ é™¤æœåŠ¡äººå‘˜
+//Í¨¹ıidÉ¾³ı·şÎñÈËÔ±
 void deletework(int id){}
-//é€šè¿‡æœåŠ¡äººå‘˜idè¿”å›å…¥ä½äººåœ°å€ æ‰¾ä¸åˆ°è¿”å›NULL
+//Í¨¹ı·şÎñÈËÔ±id·µ»ØÈë×¡ÈËµØÖ· ÕÒ²»µ½·µ»ØNULL
 user *searchworker(int id){}
-//é€šè¿‡å…¥ä½äººidè¿”å›å…¥ä½äººåœ°å€ æ‰¾ä¸åˆ°è¿”å›NULL
+//Í¨¹ıÈë×¡ÈËid·µ»ØÈë×¡ÈËµØÖ· ÕÒ²»µ½·µ»ØNULL
 user *searchuser(int id){}
-//é€šè¿‡åœºé¦†idè¿”å›ï¼š1æˆåŠŸ 0ç­‰å¾…
+//Í¨¹ı³¡¹İid·µ»Ø£º1³É¹¦ 0µÈ´ı
 int is_queue_full(int id){
 
 }

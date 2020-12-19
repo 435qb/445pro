@@ -16,7 +16,7 @@ typedef struct HOUSE
     double _area;
     int _is_bought;
     int _is_rent;
-    user *_user; //å…¥ä½äºº
+    user *_user; //Èë×¡ÈË
 } house;
 
 typedef struct VIP
@@ -28,10 +28,10 @@ typedef struct VIP
 
 
 
-// _is_bought 1 _is_rent 0 _human 0 ç©ºç½®
-// _is_bought 0 æœªè´­ä¹°
-// _is_bought 1 _is_rent 1 ç§Ÿå€Ÿ
-// _is_bought 1 _is_rent 0 _human !0 å…¥ä½
+// _is_bought 1 _is_rent 0 _human 0 ¿ÕÖÃ
+// _is_bought 0 Î´¹ºÂò
+// _is_bought 1 _is_rent 1 ×â½è
+// _is_bought 1 _is_rent 0 _human !0 Èë×¡
 typedef struct QUEUE
 {
     int _MAX;
@@ -56,7 +56,7 @@ INIT(user);
 INIT(house);
 INIT(facil);
 INIT(worker);
-//è·Ÿå…¶ä»–çš„ä¸ä¸€æ ·
+//¸úÆäËûµÄ²»Ò»Ñù
 INIT(queue);
 queue queuePop(queueList **wl);
 #undef INIT

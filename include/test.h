@@ -2,28 +2,28 @@
 #define _TEST_H
 #include "game.h"
 void init();
-//åˆå§‹åŒ–idï¼Œhouse=null
+//³õÊ¼»¯id£¬house=null
 vip *createVip();
-//é€šè¿‡idè¿”å›ä¼šå‘˜ç»“æ„ä½“åœ°å€
+//Í¨¹ıid·µ»Ø»áÔ±½á¹¹ÌåµØÖ·
 vip *searchVip(int id);
-//é€šè¿‡idåˆ é™¤ä¼šå‘˜
+//Í¨¹ıidÉ¾³ı»áÔ±
 void deleteVip(int id);
-//åˆå§‹åŒ–houseçš„ä¿¡æ¯
+//³õÊ¼»¯houseµÄĞÅÏ¢
 void createHouse();
-//é€šè¿‡æˆ¿å±‹idè¿”å›æˆ¿å±‹åœ°å€ æ‰¾ä¸åˆ°è¿”å›NULL
+//Í¨¹ı·¿Îİid·µ»Ø·¿ÎİµØÖ· ÕÒ²»µ½·µ»ØNULL
 house *searchHouse(int id);
-//åˆå§‹åŒ–facilçš„ä¿¡æ¯
+//³õÊ¼»¯facilµÄĞÅÏ¢
 void createFacil();
-//åˆå§‹åŒ–workerçš„ä¿¡æ¯
+//³õÊ¼»¯workerµÄĞÅÏ¢
 void createWorker();
-//é€šè¿‡idè¿”å›æœåŠ¡äººå‘˜ç»“æ„ä½“åœ°å€ æ‰¾ä¸åˆ°è¿”å›NULL
+//Í¨¹ıid·µ»Ø·şÎñÈËÔ±½á¹¹ÌåµØÖ· ÕÒ²»µ½·µ»ØNULL
 worker *searchWorker(int id);
-//é€šè¿‡idåˆ é™¤æœåŠ¡äººå‘˜
+//Í¨¹ıidÉ¾³ı·şÎñÈËÔ±
 void deletework(int id);
-//é€šè¿‡æœåŠ¡äººå‘˜idè¿”å›å…¥ä½äººåœ°å€ æ‰¾ä¸åˆ°è¿”å›NULL
+//Í¨¹ı·şÎñÈËÔ±id·µ»ØÈë×¡ÈËµØÖ· ÕÒ²»µ½·µ»ØNULL
 user *searchworker(int id);
-//é€šè¿‡å…¥ä½äººidè¿”å›å…¥ä½äººåœ°å€ æ‰¾ä¸åˆ°è¿”å›NULL
+//Í¨¹ıÈë×¡ÈËid·µ»ØÈë×¡ÈËµØÖ· ÕÒ²»µ½·µ»ØNULL
 user *searchuser(int id);
-//é€šè¿‡åœºé¦†idè¿”å›ï¼š1æˆåŠŸ 0ç­‰å¾…
+//Í¨¹ı³¡¹İid·µ»Ø£º1³É¹¦ 0µÈ´ı
 int is_queue_full(int id);
 #endif
