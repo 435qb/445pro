@@ -3,19 +3,19 @@
 #include "game.h"
 void init();
 //初始化id，house=null
-vip *createVip();
+vip* createVip();
 //通过id返回会员结构体地址
 vip *searchVip(int id);
 //通过id删除会员
 void deleteVip(int id);
 //初始化house的信息
-void createHouse();
+vip* createHouse();
 //通过房屋id返回房屋地址 找不到返回NULL
 house *searchHouse(int id);
 //初始化facil的信息
-void createFacil();
+vip* createFacil();
 //初始化worker的信息
-void createWorker();
+vip* createWorker();
 //通过id返回服务人员结构体地址 找不到返回NULL
 worker *searchWorker(int id);
 //通过id删除服务人员
