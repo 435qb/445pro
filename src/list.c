@@ -11,13 +11,14 @@ void queueCreate(queueList **wl, const queue *w)\
     wl[0]->element = *w;\
     wl[0]->next = NULL;\
 }\
-void queuePush(queueList **wl, const queue *w)\
+queue* queuePush(queueList **wl, const queue *w)\
 {\
     queueList *curr, *temp = wl[0];\
     queueCreate(&curr, w);\
     while (temp->next != NULL && (temp = temp->next))\
         continue;\
     temp->next = curr;\
+    return curr;
 }\
 //不能传入指向null的指针,必须是头节点
 queue queuePop(queueList **wl){

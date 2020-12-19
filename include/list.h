@@ -8,7 +8,7 @@
         struct name##LIST *next;                   \
     } name##List;                                  \
     void name##Create(name##List **, const name *); \
-    void name##Push(name##List **, const name *);   \
+    name* name##Push(name##List **, const name *);   \
     name *name##Search(name##List **, int id);      \
     void name##Delete(name##List **, int id); \
     void name##Free(name##List **);
@@ -20,13 +20,14 @@ void name##Create(name##List **wl, const name *w)\
     wl[0]->element = *w;\
     wl[0]->next = NULL;\
 }\
-void name##Push(name##List **wl, const name *w)\
+name* name##Push(name##List **wl, const name *w)\
 {\
     name##List *curr, *temp = wl[0];\
     name##Create(&curr, w);\
     while (temp->next != NULL && (temp = temp->next))\
         continue;\
     temp->next = curr;\
+    return &curr->element;\
 }\
 name * name##Search(name##List **wl, int id)\
 {\
