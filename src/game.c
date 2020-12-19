@@ -23,7 +23,10 @@ void buy_house()
         house *new = searchHouse(id);
         if (new == NULL)
         {
-            printf("没有那样的房屋或房屋已被占用\n");
+            printf("没有那样的房屋\n");
+            continue;
+        }else if (new->_is_bought){
+            printf("房屋已被占用\n");
             continue;
         }
         printf("修改完成\n");
@@ -50,6 +53,12 @@ void search_vip()
         int id;
         ID_GET(id);
         vip *pre = searchVip(id);
+        if (pre == NULL)
+        {   
+            printf("查无此人\n");
+        }else{
+            printf("你的名字是%s\n", pre->_name);
+        }
         break;
     }
 };
