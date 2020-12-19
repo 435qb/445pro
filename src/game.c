@@ -9,51 +9,51 @@
     {                             \
         while (getchar() != '\n') \
             continue;             \
-        printf("ÎŞĞ§×Ö·û\n");     \
+        printf("æ— æ•ˆå­—ç¬¦\n");     \
         continue;                 \
     }
 
-//¸ü¸Ä·¿ÎİÊı¾İÎªÈë×¡×´Ì¬
-void Èë×¡();
-//¸ü¸Ä·¿ÎİÊı¾İÎª³ö×â×´Ì¬
-void ³ö×â();
-//¸ü¸Ä·¿ÎİÊı¾İÎª¿ÕÖÃ×´Ì¬
-void ¿ÕÖÃ();
+//æ›´æ”¹æˆ¿å±‹æ•°æ®ä¸ºå…¥ä½çŠ¶æ€
+void å…¥ä½();
+//æ›´æ”¹æˆ¿å±‹æ•°æ®ä¸ºå‡ºç§ŸçŠ¶æ€
+void å‡ºç§Ÿ();
+//æ›´æ”¹æˆ¿å±‹æ•°æ®ä¸ºç©ºç½®çŠ¶æ€
+void ç©ºç½®();
 
-void ¹ºÂò·¿Îİ()
+void è´­ä¹°æˆ¿å±‹()
 {
     while (1)
     {
-        printf("ÇëÊäÈëÒª¹ºÂòµÄ·¿×ÓµÄid\n");
+        printf("è¯·è¾“å…¥è¦è´­ä¹°çš„æˆ¿å­çš„id\n");
         int id;
         ID_GET(id);
         house *new = searchhouse(id);
         if (new == NULL)
         {
-            printf("Ã»ÓĞÄÇÑùµÄ·¿Îİ»ò·¿ÎİÒÑ±»Õ¼ÓÃ\n");
+            printf("æ²¡æœ‰é‚£æ ·çš„æˆ¿å±‹æˆ–æˆ¿å±‹å·²è¢«å ç”¨\n");
             continue;
         }
-        printf("ĞŞ¸ÄÍê³É\n");
+        printf("ä¿®æ”¹å®Œæˆ\n");
         break;
     }
 };
 
-void ĞÂ½¨»áÔ±()
+void æ–°å»ºä¼šå‘˜()
 {
-    printf("ÊäÈëÄúµÄĞÕÃû:\n");
+    printf("è¾“å…¥æ‚¨çš„å§“å:\n");
     vip *curr = createVip();
 
-    //Êä´íÁËÔõÃ´°ì
+    //è¾“é”™äº†æ€ä¹ˆåŠ
     scanf("%s", curr->_name);
 
-    printf("´´½¨³É¹¦\n");
-    ¹ºÂò·¿Îİ();
+    printf("åˆ›å»ºæˆåŠŸ\n");
+    è´­ä¹°æˆ¿å±‹();
 };
-void ²éÑ¯»áÔ±()
+void æŸ¥è¯¢ä¼šå‘˜()
 {
     while (1)
     {
-        printf("ÇëÊäÈëÄãµÄid\n");
+        printf("è¯·è¾“å…¥ä½ çš„id\n");
         int id;
         ID_GET(id);
         vip *pre = searchVip(id);
@@ -61,60 +61,60 @@ void ²éÑ¯»áÔ±()
     }
 };
 
-void ĞŞ¸Ä»áÔ±()
+void ä¿®æ”¹ä¼šå‘˜()
 {
     while (1)
     {
-        printf("ÇëÊäÈëÄúµÄid\n");
+        printf("è¯·è¾“å…¥æ‚¨çš„id\n");
         int id;
         scanf("%d", &id);
 
         vip *curr = searchVip(id);
         char name[NAME_MAX + 1], a[NAME_MAX + 1];
-        printf("ÇëÊäÈëÏÖĞÕÃû:\n");
+        printf("è¯·è¾“å…¥ç°å§“å:\n");
         scanf("%s", name);
-        printf("ÇëÔÙ´ÎÊäÈë:\n");
+        printf("è¯·å†æ¬¡è¾“å…¥:\n");
         scanf("%s", a);
         if (strcmp(name, a) == 0)
             strcpy(curr->_name, name);
         else
-            printf("ÊäÈë´íÎó£¬ÇëÖØÊÔ\n");
+            printf("è¾“å…¥é”™è¯¯ï¼Œè¯·é‡è¯•\n");
         break;
     }
 };
 
-void É¾³ı»áÔ±()
+void åˆ é™¤ä¼šå‘˜()
 {
     while (1)
     {
-        printf("ÇëÊäÈëÄúµÄid\n");
+        printf("è¯·è¾“å…¥æ‚¨çš„id\n");
         int id;
         ID_GET(id);
-        printf("ÄúÕæµÄÒªÉ¾³ıÂğ?[Y/n]\n");
+        printf("æ‚¨çœŸçš„è¦åˆ é™¤å—?[Y/n]\n");
         char ch;
         if ((ch = getchar()) == 'y' || ch == 'Y')
         {
             deleteVip(id);
-            printf("É¾³ı³É¹¦\n");
+            printf("åˆ é™¤æˆåŠŸ\n");
         }
         else
-            printf("Î´É¾³ı\n");
+            printf("æœªåˆ é™¤\n");
         while (getchar() != '\n')
             continue;
         break;
     }
 };
 
-void ĞÂ½¨·¿Îİ()
+void æ–°å»ºæˆ¿å±‹()
 {
     createHouse();
 };
 
-void ²é¿´·¿Îİ()
+void æŸ¥çœ‹æˆ¿å±‹()
 {
     while (1)
     {
-        printf("ÇëÊäÈë·¿Îİid\n");
+        printf("è¯·è¾“å…¥æˆ¿å±‹id\n");
         int id;
         ID_GET(id);
         house *searchHouse(id);
@@ -122,89 +122,89 @@ void ²é¿´·¿Îİ()
     }
 };
 
-void ĞÂ½¨ÓéÀÖÉèÊ©()
+void æ–°å»ºå¨±ä¹è®¾æ–½()
 {
     createFacil();
 };
 
-void ÉêÇëÓéÀÖÉèÊ©()
+void ç”³è¯·å¨±ä¹è®¾æ–½()
 {
     while (1)
     {
-        printf("ÇëÊäÈë³¡¹İid\n");
+        printf("è¯·è¾“å…¥åœºé¦†id\n");
         int id;
         ID_GET(id);
         int queue(id);
         if (queue == 1)
-            printf("ÉêÇë³É¹¦\n");
+            printf("ç”³è¯·æˆåŠŸ\n");
         if (queue == 0)
-            printf("µÈ´ıÖĞ\n");
+            printf("ç­‰å¾…ä¸­\n");
         break;
     }
 };
-void ĞÂÔö·şÎñÈËÔ±()
+void æ–°å¢æœåŠ¡äººå‘˜()
 {
     createWorker();
 };
 
-void ĞŞ¸Ä·şÎñÈËÔ±()
+void ä¿®æ”¹æœåŠ¡äººå‘˜()
 {
     while (1)
     {
-        printf("ÇëÊäÈëÄúµÄid\n");
+        printf("è¯·è¾“å…¥æ‚¨çš„id\n");
         int id;
         ID_GET(id);
         worker *curr = searchWorker(id);
         char name[NAME_MAX + 1], a[NAME_MAX + 1];
-        printf("ÇëÊäÈëÏÖĞÕÃû:\n");
+        printf("è¯·è¾“å…¥ç°å§“å:\n");
         scanf("%s", name);
-        printf("ÇëÔÙ´ÎÊäÈë:\n");
+        printf("è¯·å†æ¬¡è¾“å…¥:\n");
         scanf("%s", a);
         if (strcmp(name, a) == 0)
             strcpy(curr->_name, name);
         else
-            printf("ÊäÈë´íÎó£¬ÇëÖØÊÔ\n");
+            printf("è¾“å…¥é”™è¯¯ï¼Œè¯·é‡è¯•\n");
         break;
     }
 };
-void É¾³ı·şÎñÈËÔ±()
+void åˆ é™¤æœåŠ¡äººå‘˜()
 {
     while (1)
     {
-        printf("ÇëÊäÈëÄúµÄid\n");
+        printf("è¯·è¾“å…¥æ‚¨çš„id\n");
         int id;
         ID_GET(id);
         deleteVip(id);
-        printf("É¾³ı³É¹¦\n");
+        printf("åˆ é™¤æˆåŠŸ\n");
         break;
     }
 };
-void ²é¿´·şÎñ¶ÔÏó()
+void æŸ¥çœ‹æœåŠ¡å¯¹è±¡()
 {
     while (1)
     {
-        printf("ÇëÊäÈëÄúµÄid\n");
+        printf("è¯·è¾“å…¥æ‚¨çš„id\n");
         int id;
         ID_GET(id);
         user *searchworker(id);
-        printf("²é¿´³É¹¦\n");
+        printf("æŸ¥çœ‹æˆåŠŸ\n");
         break;
     }
 };
-void ÉèÖÃ·şÎñ¶ÔÏó()
+void è®¾ç½®æœåŠ¡å¯¹è±¡()
 {
     while (1)
     {
-        printf("ÇëÊäÈë·şÎñÈËÔ±µÄid\n");
+        printf("è¯·è¾“å…¥æœåŠ¡äººå‘˜çš„id\n");
         int id;
         ID_GET(id);
         user *pre = searchworker(id);
-        printf("ÇëÊäÈë·şÎñ¶ÔÏóµÄid\n");
+        printf("è¯·è¾“å…¥æœåŠ¡å¯¹è±¡çš„id\n");
         int id2;
         ID_GET(id2);
         user *curr = searchuser(id);
         pre = curr;
-        printf("ÉèÖÃ³É¹¦\n");
+        printf("è®¾ç½®æˆåŠŸ\n");
         break;
     }
 };
@@ -212,38 +212,38 @@ void manage_vips()
 {
     while (1)
     {
-        printf("1.ĞÂ½¨»áÔ±\n");
-        printf("2.²éÑ¯»áÔ±\n");
-        printf("3.ĞŞ¸Ä»áÔ±\n");
-        printf("4.É¾³ı»áÔ±\n");
-        printf("5.·µ»Ø\n");
+        printf("1.æ–°å»ºä¼šå‘˜\n");
+        printf("2.æŸ¥è¯¢ä¼šå‘˜\n");
+        printf("3.ä¿®æ”¹ä¼šå‘˜\n");
+        printf("4.åˆ é™¤ä¼šå‘˜\n");
+        printf("5.è¿”å›\n");
         int choose;
         if (scanf("%d", &choose) == 0)
         {
             while (getchar() != '\n')
                 continue;
-            printf("ÎŞĞ§×Ö·û\n");
+            printf("æ— æ•ˆå­—ç¬¦\n");
             continue;
         }
 
         switch (choose)
         {
         case 1:
-            ĞÂ½¨»áÔ±();
+            æ–°å»ºä¼šå‘˜();
             break;
         case 2:
-            ²éÑ¯»áÔ±();
+            æŸ¥è¯¢ä¼šå‘˜();
             break;
         case 3:
-            ĞŞ¸Ä»áÔ±();
+            ä¿®æ”¹ä¼šå‘˜();
             break;
         case 4:
-            É¾³ı»áÔ±();
+            åˆ é™¤ä¼šå‘˜();
             break;
         case 5:
             return;
         default:
-            printf("ÎŞĞ§×Ö·û\n");
+            printf("æ— æ•ˆå­—ç¬¦\n");
         }
     }
 }
@@ -251,21 +251,21 @@ void manage_houses()
 {
     while (1)
     {
-        printf("1.ĞÂ½¨·¿Îİ\n");
-        printf("2.²é¿´·¿Îİ\n");
-        printf("3.·µ»Ø\n");
+        printf("1.æ–°å»ºæˆ¿å±‹\n");
+        printf("2.æŸ¥çœ‹æˆ¿å±‹\n");
+        printf("3.è¿”å›\n");
         int choose;
         ID_GET(choose);
         switch (choose)
         {
         case 1:
-            ĞÂ½¨·¿Îİ();
+            æ–°å»ºæˆ¿å±‹();
         case 2:
-            ²é¿´·¿Îİ();
+            æŸ¥çœ‹æˆ¿å±‹();
         case 3:
             return;
         default:
-            printf("ÎŞĞ§×Ö·û\n");
+            printf("æ— æ•ˆå­—ç¬¦\n");
         }
     }
 }
@@ -273,45 +273,45 @@ void manage_lives()
 {
     while (1)
     {
-        printf("Ñ¡ÔñÈë×¡ÈË\n");
+        printf("é€‰æ‹©å…¥ä½äºº\n");
         int id;
         scanf("%d", &id);
         house *searchhouse(id);
-        printf("1.´¦Àí·¿Îİ\n");
-        printf("2.ÉêÇëÓéÀÖÉèÊ©\n");
-        printf("3.·µ»Ø\n");
+        printf("1.å¤„ç†æˆ¿å±‹\n");
+        printf("2.ç”³è¯·å¨±ä¹è®¾æ–½\n");
+        printf("3.è¿”å›\n");
         int choose;
         scanf("%d", &choose);
         switch (choose)
         {
         case 1:
         {
-            printf("1.Èë×¡\n");
-            printf("2.³ö×â\n");
-            printf("3.¿ÕÖÃ\n");
-            printf("4.·µ»Ø\n");
+            printf("1.å…¥ä½\n");
+            printf("2.å‡ºç§Ÿ\n");
+            printf("3.ç©ºç½®\n");
+            printf("4.è¿”å›\n");
             int choose2;
             scanf("%d", &choose2);
             switch (choose2)
             {
             case 1:
-                Èë×¡();
+                å…¥ä½();
             case 2:
-                ³ö×â();
+                å‡ºç§Ÿ();
             case 3:
-                ¿ÕÖÃ();
+                ç©ºç½®();
             case 4:
                 return;
             default:
-                printf("ÎŞĞ§×Ö·û\n");
+                printf("æ— æ•ˆå­—ç¬¦\n");
             }
         }
         case 2:
-            ÉêÇëÓéÀÖÉèÊ©();
+            ç”³è¯·å¨±ä¹è®¾æ–½();
         case 3:
             return;
         default:
-            printf("ÎŞĞ§×Ö·û\n");
+            printf("æ— æ•ˆå­—ç¬¦\n");
         }
     }
 }
@@ -319,46 +319,46 @@ void manage_facilities()
 {
     while (1)
     {
-        printf("1.ĞÂ½¨ÓéÀÖÉèÊ©\n");
-        printf("2.·µ»Ø\n");
+        printf("1.æ–°å»ºå¨±ä¹è®¾æ–½\n");
+        printf("2.è¿”å›\n");
         int choose;
         ID_GET(choose);
         switch (choose)
         {
         case 1:
-            ĞÂ½¨ÓéÀÖÉèÊ©();
+            æ–°å»ºå¨±ä¹è®¾æ–½();
         case 2:
             return;
         default:
-            printf("ÎŞĞ§×Ö·û\n");
+            printf("æ— æ•ˆå­—ç¬¦\n");
         }
     }
 }
-void ÒÑÓĞÈËÔ±()
+void å·²æœ‰äººå‘˜()
 {
     while (1)
     {
-        printf("1.ĞŞ¸Ä·şÎñÈËÔ±\n");
-        printf("2.É¾³ı·şÎñÈËÔ±\n");
-        printf("3.²é¿´·şÎñ¶ÔÏó\n");
-        printf("4.ÉèÖÃ·şÎñ¶ÔÏó\n");
-        printf("5.·µ»Ø\n");
+        printf("1.ä¿®æ”¹æœåŠ¡äººå‘˜\n");
+        printf("2.åˆ é™¤æœåŠ¡äººå‘˜\n");
+        printf("3.æŸ¥çœ‹æœåŠ¡å¯¹è±¡\n");
+        printf("4.è®¾ç½®æœåŠ¡å¯¹è±¡\n");
+        printf("5.è¿”å›\n");
         int choose;
         ID_GET(choose);
         switch (choose)
         {
         case 1:
-            ĞŞ¸Ä·şÎñÈËÔ±();
+            ä¿®æ”¹æœåŠ¡äººå‘˜();
         case 2:
-            É¾³ı·şÎñÈËÔ±();
+            åˆ é™¤æœåŠ¡äººå‘˜();
         case 3:
-            ²é¿´·şÎñ¶ÔÏó();
+            æŸ¥çœ‹æœåŠ¡å¯¹è±¡();
         case 4:
-            ÉèÖÃ·şÎñ¶ÔÏó();
+            è®¾ç½®æœåŠ¡å¯¹è±¡();
         case 5:
             return;
         default:
-            printf("ÎŞĞ§×Ö·û\n");
+            printf("æ— æ•ˆå­—ç¬¦\n");
         }
     }
 }
@@ -366,21 +366,21 @@ void manage_accounts()
 {
     while (1)
     {
-        printf("1.ĞÂÔö·şÎñÈËÔ±\n");
-        printf("2.ÒÑÓĞÈËÔ±\n");
-        printf("3.·µ»Ø\n");
+        printf("1.æ–°å¢æœåŠ¡äººå‘˜\n");
+        printf("2.å·²æœ‰äººå‘˜\n");
+        printf("3.è¿”å›\n");
         int choose1;
         scanf("%d", &choose1);
         switch (choose1)
         {
         case 1:
-            ĞÂÔö·şÎñÈËÔ±();
+            æ–°å¢æœåŠ¡äººå‘˜();
         case 2:
-            ÒÑÓĞÈËÔ±();
+            å·²æœ‰äººå‘˜();
         case 3:
             return;
         default:
-            printf("ÎŞĞ§×Ö·û\n");
+            printf("æ— æ•ˆå­—ç¬¦\n");
         }
     }
 }
