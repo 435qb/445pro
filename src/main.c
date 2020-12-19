@@ -2,9 +2,27 @@
 //#include "list.h"
 #include "game.h"
 #include "test.h"
+
 int main()
 {
-   // init();
+    init();
+    FILE *fp = fopen("houses.txt", "r");
+    if (fp == NULL){
+        fp = fopen("houses.txt", "w");
+        fprintf(fp,"5.0 6.0");
+        fclose(fp);
+        fp = fopen("houses.txt", "r");
+    }
+    int num = 0;
+    while(fscanf(fp, "%*lf") != EOF){
+        ++num;
+    }
+    fseek(fp, 0, SEEK_SET);
+    double temp;
+    while(fscanf(fp, "%lf", &temp) != EOF){
+        house* curr = createHouse();
+        curr->_area = temp;
+    }
     while (1)
     {
         int choose;

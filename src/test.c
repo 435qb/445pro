@@ -37,7 +37,7 @@ void deleteVip(int id){
     vipDelete(&vipHead,id); 
 }
 
-void createHouse(){
+house* createHouse(){
     static int houseId = 1;
     house x = {houseId, 0, 0, 0, NULL};
     houseId++;
@@ -55,15 +55,15 @@ house *searchHouse(int id){
 
 //初始化facil的信息
 
-void createFacil(){
-     static int facilId = 1;
+facil* createFacil(){
+    static int facilId = 1;
     facil f;
     f._id = facilId;
     ++facilId;
     return vipPush(&facilHead, &f);
 }
 
-void createWorker(){
+worker* createWorker(){
     static int workerId = 1;
     worker w;
     ++workerId;
@@ -78,7 +78,7 @@ void deleteWork(int id){
     workerDelete(&workerHead,id);
 }
 //通过服务人员id返回入住人地址 找不到返回NULL
-user *searchWorker(int id){
+user *searchUserofWorker(int id){
     worker *wk;
     wk=workerSearch(&workerHead,id);
     return wk->_user;
@@ -87,12 +87,12 @@ user *searchWorker(int id){
 user *searchUser(int id){
      userSearch(&userHead,id);
 }
-void createUser(){
+user* createUser(){
     static int userId = 1;
-    user *u ;
-    u->_id=userId;
+    user u ;
+    u._id = userId;
     ++userId;
-    return  userPush(&userHead, &u);
+    return userPush(&userHead, &u);
 }
 void deleteUser(int id){
     userDelete(&userHead,id); 

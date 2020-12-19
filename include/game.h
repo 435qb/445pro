@@ -3,13 +3,14 @@
 
 #define NAME_MAX 100
 #include <stdlib.h>
-
+struct HOUSE;
 typedef struct USER
 {
+    struct HOUSE* _house;
     int _id;
     char _name[NAME_MAX + 1];
 } user;
-
+struct VIP;
 typedef struct HOUSE
 {
     int _id;
@@ -17,6 +18,7 @@ typedef struct HOUSE
     int _is_bought;
     int _is_rent;
     user *_user; //Èë×¡ÈË
+    struct VIP* _vip;
 } house;
 
 typedef struct VIP

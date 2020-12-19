@@ -27,7 +27,7 @@ name* name##Push(name##List **wl, const name *w)\
     while (temp->next != NULL && (temp = temp->next))\
         continue;\
     temp->next = curr;\
-    return &curr->element;\
+    return &(curr->element);\
 }\
 name * name##Search(name##List **wl, int id)\
 {\

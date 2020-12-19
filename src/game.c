@@ -13,27 +13,6 @@
         continue;                 \
     }
 
-void buy_house()
-{
-    while (1)
-    {
-        printf("请输入要购买的房子的id\n");
-        int id;
-        ID_GET(id);
-        house *new = searchHouse(id);
-        if (new == NULL)
-        {
-            printf("没有那样的房屋\n");
-            continue;
-        }else if (new->_is_bought){
-            printf("房屋已被占用\n");
-            continue;
-        }
-        printf("修改完成\n");
-        break;
-    }
-};
-
 void new_vip()
 {
     printf("输入您的姓名:\n");
@@ -42,9 +21,64 @@ void new_vip()
     //输错了怎么办
     scanf("%s", curr->_name);
 
-    printf("创建成功\n");
-    buy_house();
-};
+    printf("创建成功\n您的id是%d\n", curr->_id);
+    while (1)
+    {
+        printf("请输入要购买的房子的id\n");
+        int id;
+        ID_GET(id);
+        house* new = searchHouse(id);
+        if (new == NULL)
+        {
+            printf("没有那样的房屋\n");
+            continue;
+        }
+        else if (new->_is_bought) {
+            printf("房屋已被占用\n");
+            continue;
+        }
+        printf("您要的是%.2lf的房子吗?[Y/n]\n", new->_area);
+        while (getchar() != '\n')
+            continue;
+
+        char ch;
+        if ((ch = getchar()) != 'n' || ch != 'N')
+        {
+        	if(ch != '\n')
+				while (getchar() != '\n')
+					continue;
+            printf("请输入入住人的名字\n");
+        	
+            char name[NAME_MAX + 1];
+            scanf("%s", name);
+        	
+            user* curr1 = createUser();
+            strcpy(curr1->_name, name);
+            curr1->_house = new;
+            new->_user = curr1;
+            new->_vip = curr;
+        	
+            printf("修改完成\n入住人的id是%d\n", curr1->_id);
+            new->_is_bought = 1;
+            if (strcmp(name, curr->_name) == 0)
+            {
+                new->_is_rent = 0;
+            } else
+        	{
+                new->_is_rent = 1;
+        	}
+        }
+        else {
+            printf("未购买\n");
+            continue;
+        }
+        while (getchar() != '\n')
+            continue;
+
+        break;
+    }
+}
+
 void search_vip()
 {
     while (1)
@@ -61,7 +95,7 @@ void search_vip()
         }
         break;
     }
-};
+}
 
 void modify_vip()
 {
@@ -72,18 +106,26 @@ void modify_vip()
         scanf("%d", &id);
 
         vip *curr = searchVip(id);
+    	if(curr == NULL)
+    	{
+            printf("查无此人\n");
+    		continue;
+    	}
+    	
         char name[NAME_MAX + 1], a[NAME_MAX + 1];
         printf("请输入现姓名:\n");
         scanf("%s", name);
         printf("请再次输入:\n");
         scanf("%s", a);
-        if (strcmp(name, a) == 0)
+        if (strcmp(name, a) == 0) {
             strcpy(curr->_name, name);
+            printf("修改成功\n");
+        }
         else
             printf("输入错误，请重试\n");
         break;
     }
-};
+}
 
 void delete_vip()
 {
@@ -92,8 +134,10 @@ void delete_vip()
         printf("请输入您的id\n");
         int id;
         ID_GET(id);
-        printf("您真的要删除吗?[Y/n]\n");
+        printf("您真的要删除吗?[y/N]\n");
         char ch;
+        while (getchar() != '\n')
+            continue;
         if ((ch = getchar()) == 'y' || ch == 'Y')
         {
             deleteVip(id);
@@ -101,115 +145,10 @@ void delete_vip()
         }
         else
             printf("未删除\n");
-        while (getchar() != '\n')
-            continue;
         break;
     }
-};
+}
 
-void new_house()
-{
-    createHouse();
-};
-
-void watch_house()
-{
-    while (1)
-    {
-        printf("请输入房屋id\n");
-        int id;
-        ID_GET(id);
-        //house *searchHouse(id);
-        break;
-    }
-};
-
-void new_facility()
-{
-    createFacil();
-};
-
-void apply_facility()
-{
-    while (1)
-    {
-        printf("请输入场馆id\n");
-        int id;
-        ID_GET(id);
-        int queue = id;///
-        if (queue == 1)
-            printf("申请成功\n");
-        if (queue == 0)
-            printf("等待中\n");
-        break;
-    }
-};
-void add_worker()
-{
-    createWorker();
-};
-
-void modify_worker()
-{
-    while (1)
-    {
-        printf("请输入您的id\n");
-        int id;
-        ID_GET(id);
-        worker *curr = searchWorker(id);
-        char name[NAME_MAX + 1], a[NAME_MAX + 1];
-        printf("请输入现姓名:\n");
-        scanf("%s", name);
-        printf("请再次输入:\n");
-        scanf("%s", a);
-        if (strcmp(name, a) == 0)
-            strcpy(curr->_name, name);
-        else
-            printf("输入错误，请重试\n");
-        break;
-    }
-};
-void delete_worker()
-{
-    while (1)
-    {
-        printf("请输入您的id\n");
-        int id;
-        ID_GET(id);
-        deleteVip(id);
-        printf("删除成功\n");
-        break;
-    }
-};
-void watch_user()
-{
-    while (1)
-    {
-        printf("请输入您的id\n");
-        int id;
-        ID_GET(id);
-    //user *searchworker(id);
-        printf("查看成功\n");
-        break;
-    }
-};
-void set_user()
-{
-    while (1)
-    {
-        printf("请输入服务人员的id\n");
-        int id;
-        ID_GET(id);
-        user *pre = searchworker(id);
-        printf("请输入服务对象的id\n");
-        int id2;
-        ID_GET(id2);
-        user *curr = searchuser(id);
-        pre = curr;
-        printf("设置成功\n");
-        break;
-    }
-};
 void manage_vips()
 {
     while (1)
@@ -249,6 +188,45 @@ void manage_vips()
         }
     }
 }
+
+void new_house()
+{
+    while (1) {
+        printf("请输入房屋大小\n");
+        double area;
+        if (scanf("%lf", &area) == 0)
+        {
+            while (getchar() != '\n')
+                continue;
+            printf("无效字符\n");
+            continue;
+        }
+
+        house* curr = createHouse();
+        printf("房屋的id是%d\n", curr->_id);
+        curr->_area = area;
+        break;
+    }
+}
+
+void watch_house()
+{
+    while (1)
+    {
+        printf("请输入房屋id\n");
+        int id;
+        ID_GET(id)
+        house* curr = searchHouse(id);
+    	if(curr == NULL)
+    	{
+            printf("无此房屋\n");
+    		continue;
+    	}
+        printf("房子的大小为%.2lf\n", curr->_area);
+        break;
+    }
+}
+
 void manage_houses()
 {
     while (1)
@@ -257,13 +235,15 @@ void manage_houses()
         printf("2.查看房屋\n");
         printf("3.返回\n");
         int choose;
-        ID_GET(choose);
+        ID_GET(choose)
         switch (choose)
         {
         case 1:
             new_house();
+        	break;
         case 2:
             watch_house();
+        	break;
         case 3:
             return;
         default:
@@ -271,45 +251,186 @@ void manage_houses()
         }
     }
 }
+/// <summary>
+/// 
+/// </summary>
+void handle_house(user* curr)
+{
+    while (1) {
+        printf("1.入住\n");
+        printf("2.出租\n");
+        printf("3.空置\n");
+        printf("4.返回\n");
+        int choose;
+        ID_GET(choose)
+        house* h = curr->_house;
+        switch (choose)
+        {
+        case 1:
+            while (1) {
+                printf("请选择您要住的房间id\n");
+                int id;
+                ID_GET(id)
+                house* now = searchHouse(id);
+            	if(now == NULL)
+            	{
+                    printf("没有该房间\n");
+            	} else if(now->_is_bought == 0)
+            	{
+                    printf("还没有购买该房间\n");
+            	} else if(now->_is_rent)
+            	{
+                    printf("已经租出去了\n");
+            	} else if(strcmp(now->_vip->_name, curr->_name) != 0)
+            	{
+                    printf("此房已被他人购买\n");
+            	} else if(now->_user != NULL)
+            	{
+                    printf("您住的就是这个房子，无需再次入住\n");
+            	} else
+            	{
+            		//now clear
+                    now->_is_rent = 0;
+                    now->_user = curr;
+            		//h clear
+                    h->_is_rent = 0;
+                    h->_user = NULL;
+            		//user clear
+                    curr->_house = now;
+                    printf("入住成功\n");
+            	}
+            	break;
+            }
+            break;
+        case 2:
+	        while (1)
+	        {
+                printf("请选择您要租的房间id\n");
+                int id;
+                ID_GET(id)
+                house* now = searchHouse(id);
+                if (now == NULL)
+                {
+                    printf("没有该房间\n");
+                }
+                else if (now->_is_bought == 0)
+                {
+                    printf("还没有人购买该房间\n");
+                }
+                else if (now->_is_rent)
+                {
+                    printf("已经租出去了\n");
+                }
+                else if (strcmp(now->_vip->_name, curr->_name) == 0)
+                {
+                    printf("此房就是您的房间不需要租\n");
+                }
+                else if(now->_user != NULL)
+                {
+                    printf("房间还有人住\n");
+                }else
+                {
+                    //now clear
+                    now->_is_rent = 1;
+                    now->_user = curr;
+                    //h clear
+                    h->_is_rent = 0;
+                    h->_user = NULL;
+                    //user clear
+                    curr->_house = now;
+                    printf("租房成功\n");
+                }
+                break;
+	        }
+            break;
+        case 3:
+            while (1)
+            {
+                printf("请选择您要空置的房间id\n");
+                int id;
+                ID_GET(id)
+                house* now = searchHouse(id);
+                if (now == NULL)
+                {
+                    printf("没有该房间\n");
+                }
+                else if (now->_is_bought == 0)
+                {
+                    printf("还没有人购买该房间\n");
+                }
+                else if (now->_is_rent)
+                {
+                    printf("已经租出去了\n");
+                }
+                else if (strcmp(now->_vip->_name, curr->_name) != 0)
+                {
+                    printf("此房不是您的房间不能空置\n");
+                } else
+                {
+                    //now clear
+                    now->_is_rent = 1;
+                    now->_user = curr;
+                    //h clear
+                    h->_is_rent = 0;
+                    h->_user = NULL;
+                    //user clear
+                    curr->_house = now;
+                    printf("租房成功\n");
+                }
+                break;
+
+            }
+            break;
+        case 4:
+            return;
+        default:
+            printf("无效字符\n");
+        }
+    }
+}
+
+void apply_facility(user* curr)
+{
+    while (1)
+    {
+        printf("请输入场馆id\n");
+        int id;
+        ID_GET(id);
+        int queue = id;///
+        if (queue == 1)
+            printf("申请成功\n");
+        if (queue == 0)
+            printf("等待中\n");
+        break;
+    }
+};
 void manage_lives()
 {
     while (1)
     {
-        printf("选择入住人\n");
+        printf("请输入入住人的id\n");
         int id;
-        scanf("%d", &id);
-        //house *searchhouse(id);
+        ID_GET(id)
+        user * curr = searchUser(id);
+    	if(curr == NULL)
+    	{
+            printf("没找到该入住人\n");
+    		continue;
+    	}
+    	
         printf("1.处理房屋\n");
         printf("2.申请娱乐设施\n");
         printf("3.返回\n");
         int choose;
-        scanf("%d", &choose);
+        ID_GET(choose)
         switch (choose)
         {
         case 1:
-        {
-            printf("1.入住\n");
-            printf("2.出租\n");
-            printf("3.空置\n");
-            printf("4.返回\n");
-            int choose2;
-            scanf("%d", &choose2);
-            switch (choose2)
-            {
-            case 1:
-                //入住();
-            case 2:
-                //出租();
-            case 3:
-                //空置();
-            case 4:
-                return;
-            default:
-                printf("无效字符\n");
-            }
-        }
+            handle_house(curr);
+        	break;
         case 2:
-            apply_facility();
+            apply_facility(curr);
+        	break;
         case 3:
             return;
         default:
@@ -317,6 +438,12 @@ void manage_lives()
         }
     }
 }
+
+void new_facility()
+{
+    createFacil();
+};
+
 void manage_facilities()
 {
     while (1)
@@ -324,7 +451,7 @@ void manage_facilities()
         printf("1.新建娱乐设施\n");
         printf("2.返回\n");
         int choose;
-        ID_GET(choose);
+        ID_GET(choose)
         switch (choose)
         {
         case 1:
@@ -337,6 +464,78 @@ void manage_facilities()
     }
 }
 
+void add_worker()
+{
+    createWorker();
+}
+
+void modify_worker()
+{
+    while (1)
+    {
+        printf("请输入您的id\n");
+        int id;
+        ID_GET(id);
+        worker* curr = searchWorker(id);
+    	if(curr == NULL)
+    	{
+            printf("查无此人\n");
+    		continue;
+    	}
+        char name[NAME_MAX + 1], a[NAME_MAX + 1];
+        printf("请输入现姓名:\n");
+        scanf("%s", name);
+        printf("请再次输入:\n");
+        scanf("%s", a);
+        if (strcmp(name, a) == 0)
+            strcpy(curr->_name, name);
+        else
+            printf("输入错误，请重试\n");
+        break;
+    }
+}
+void delete_worker()
+{
+    while (1)
+    {
+        printf("请输入您的id\n");
+        int id;
+        ID_GET(id);
+        deleteVip(id);
+        printf("删除成功\n");
+        break;
+    }
+}
+
+void watch_user()
+{
+    while (1)
+    {
+        printf("请输入您的id\n");
+        int id;
+        ID_GET(id);
+        //user *searchworker(id);
+        printf("查看成功\n");
+        break;
+    }
+}
+void set_user()
+{
+    while (1)
+    {
+        printf("请输入服务人员的id\n");
+        int id;
+        ID_GET(id);
+        user* pre = searchWorker(id);//curr为null
+        printf("请输入服务对象的id\n");
+        int id2;
+        ID_GET(id2);
+        user* curr = searchUser(id);//curr为null
+        pre = curr;
+        printf("设置成功\n");
+        break;
+    }
+}
 void manage_accounts()
 {
     while (1)
