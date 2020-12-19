@@ -3,6 +3,7 @@ static vipList* vipHead;
 static houseList* houseHead;
 static facilList* facilHead;
 static workerList* workerHead;
+static userList* userHead;
 
 
 //初始化id，house=null
@@ -12,10 +13,12 @@ void init()
     house h;
     worker w;
     facil f;
+    user u;
     vipCreate(&vipHead, &v);
     houseCreate(&houseHead, &h);
     workerCreate(&workerHead, &w);
     facilCreate(&facilHead, &f);
+    userCreate(&userHead,&u);
 }
 
 vip *createVip(){
@@ -68,20 +71,33 @@ void createWorker(){
 }
 //通过id返回服务人员结构体地址 找不到返回NULL
 worker *searchWorker(int id){
-        
+        return houseSearch(&houseHead,id);
 }
 //通过id删除服务人员
-void deletework(int id){
-
+void deleteWork(int id){
+    workerDelete(&workerHead,id);
 }
 //通过服务人员id返回入住人地址 找不到返回NULL
-user *searchworker(int id){
-
+user *searchWorker(int id){
+    worker *wk;
+    wk=workerSearch(&workerHead,id);
+    return wk->_user;
 }
 //通过入住人id返回入住人地址 找不到返回NULL
-user *searchuser(int id){
-
+user *searchUser(int id){
+     userSearch(&userHead,id);
 }
+void createUser(){
+    static int userId = 1;
+    user *u ;
+    u->_id=userId;
+    ++userId;
+    return  userPush(&userHead, &u);
+}
+void deleteUser(int id){
+    userDelete(&userHead,id); 
+}
+
 //通过场馆id返回：1成功 0等待
 int is_queue_full(int id){
 
