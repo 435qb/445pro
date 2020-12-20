@@ -37,6 +37,7 @@ typedef struct VIP
 typedef struct QUEUE
 {
     int _MAX;
+    int _now;
     user *_data;
 } queue;
 
@@ -53,13 +54,13 @@ typedef struct WORKER
     user *_user;
 } worker;
 #include "list.h"
-INIT(vip);
-INIT(user);
-INIT(house);
-INIT(facil);
-INIT(worker);
+INIT(vip)
+INIT(user)
+INIT(house)
+INIT(facil)
+INIT(worker)
 //跟其他的不一样
-INIT(queue);
+INIT(queue)
 queue queuePop(queueList **wl);
 #undef INIT
 

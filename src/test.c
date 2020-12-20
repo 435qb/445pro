@@ -60,32 +60,33 @@ facil* createFacil(){
     facil f;
     f._id = facilId;
     ++facilId;
-    return vipPush(&facilHead, &f);
+    return facilPush(&facilHead, &f);
 }
 
 worker* createWorker(){
     static int workerId = 1;
     worker w;
+    w._id = workerId;
     ++workerId;
     return  workerPush(&workerHead, &w);
 }
 //通过id返回服务人员结构体地址 找不到返回NULL
 worker *searchWorker(int id){
-        return houseSearch(&houseHead,id);
+    return workerSearch(&workerHead,id);
 }
 //通过id删除服务人员
-void deleteWork(int id){
+void deleteWorker(int id){
     workerDelete(&workerHead,id);
 }
 //通过服务人员id返回入住人地址 找不到返回NULL
 user *searchUserofWorker(int id){
     worker *wk;
-    wk=workerSearch(&workerHead,id);
+    wk = workerSearch(&workerHead,id);
     return wk->_user;
 }
 //通过入住人id返回入住人地址 找不到返回NULL
 user *searchUser(int id){
-     userSearch(&userHead,id);
+     return userSearch(&userHead,id);
 }
 user* createUser(){
     static int userId = 1;
@@ -98,7 +99,7 @@ void deleteUser(int id){
     userDelete(&userHead,id); 
 }
 
-//通过场馆id返回：1成功 0等待
-int is_queue_full(int id){
-
+facil* searchFacil(int id)
+{
+    return facilSearch(&facilHead, id);
 }

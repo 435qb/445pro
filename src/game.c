@@ -205,6 +205,9 @@ void new_house()
         house* curr = createHouse();
         printf("房屋的id是%d\n", curr->_id);
         curr->_area = area;
+        FILE* fp = fopen("houses.txt", "a");
+        fprintf(fp, " %.2lf", area);
+        fclose(fp);
         break;
     }
 }
@@ -251,9 +254,7 @@ void manage_houses()
         }
     }
 }
-/// <summary>
-/// 
-/// </summary>
+
 void handle_house(user* curr)
 {
     while (1) {
@@ -395,15 +396,22 @@ void apply_facility(user* curr)
     {
         printf("请输入场馆id\n");
         int id;
-        ID_GET(id);
-        int queue = id;///
-        if (queue == 1)
+        ID_GET(id)
+        facil* curr = searchFacil(id);///
+        if (curr == NULL)
+        {
+            printf("查无此设施\n");
+        	continue;
+        }
+        if (curr->_queue->_now < curr->_queue->_MAX)
+        {
+            ++curr->_queue->_now;
             printf("申请成功\n");
-        if (queue == 0)
-            printf("等待中\n");
+        }else
+            printf("人已满\n");
         break;
     }
-};
+}
 void manage_lives()
 {
     while (1)
@@ -441,7 +449,26 @@ void manage_lives()
 
 void new_facility()
 {
-    createFacil();
+    while (1) {
+        printf("请输入设施大小\n");
+        int max;
+        if (scanf("%d", &max) == 0)
+        {
+            while (getchar() != '\n')
+                continue;
+            printf("无效字符\n");
+            continue;
+        }
+
+        facil* curr = createFacil();
+        printf("设施的id是%d\n", curr->_id);
+        curr->_queue->_MAX = max;
+        FILE* fp = fopen("facils.txt", "a");
+        fprintf(fp, " %d", max);
+        fclose(fp);
+        break;
+    }
+
 };
 
 void manage_facilities()
@@ -466,9 +493,52 @@ void manage_facilities()
 
 void add_worker()
 {
-    createWorker();
-}
+    printf("输入您的姓名:\n");
+    worker* curr = createWorker();
 
+    //输错了怎么办
+    scanf("%s", curr->_name);
+    printf("创建成功\n您的id是%d\n", curr->_id);
+	
+}
+void modify_user(worker* curr)
+{
+    while (1)
+    {
+        printf("请输入您的id\n");
+        int id;
+        ID_GET(id);
+        worker* curr = searchWorker(id);
+        if (curr == NULL)
+        {
+            printf("查无此人\n");
+            continue;
+        }
+        else if (curr->_user == NULL)
+        {
+            printf("您还没有指定服务对象\n");
+            return;
+        }
+        curr->_user == NULL;
+        printf("删除服务对象成功\n");
+        break;
+    }
+
+}
+void modify_name(worker* curr)
+{
+    char name[NAME_MAX + 1], a[NAME_MAX + 1];
+    printf("请输入现姓名:\n");
+    scanf("%s", name);
+    printf("请再次输入:\n");
+    scanf("%s", a);
+    if (strcmp(name, a) == 0) {
+        strcpy(curr->_name, name);
+        printf("修改成功");
+    }
+    else
+        printf("输入错误，请重试\n");
+}
 void modify_worker()
 {
     while (1)
@@ -482,16 +552,24 @@ void modify_worker()
             printf("查无此人\n");
     		continue;
     	}
-        char name[NAME_MAX + 1], a[NAME_MAX + 1];
-        printf("请输入现姓名:\n");
-        scanf("%s", name);
-        printf("请再次输入:\n");
-        scanf("%s", a);
-        if (strcmp(name, a) == 0)
-            strcpy(curr->_name, name);
-        else
-            printf("输入错误，请重试\n");
-        break;
+        printf("1.修改服务对象\n");
+        printf("2.修改名字\n");
+        printf("3.退出\n");
+        int choose;
+    	ID_GET(choose)
+        switch (choose)
+        {
+        case 1:
+            modify_user(curr);
+        	break;
+        case 2:
+            modify_name(curr);
+        	break;
+        case 3:
+            return;
+		default:
+            printf("无效字符\n");
+        }
     }
 }
 void delete_worker()
@@ -501,8 +579,17 @@ void delete_worker()
         printf("请输入您的id\n");
         int id;
         ID_GET(id);
-        deleteVip(id);
-        printf("删除成功\n");
+        printf("您真的要删除吗?[y/N]\n");
+        char ch;
+        while (getchar() != '\n')
+            continue;
+        if ((ch = getchar()) == 'y' || ch == 'Y')
+        {
+            deleteWorker(id);
+            printf("删除成功\n");
+        }
+        else
+            printf("未删除\n");
         break;
     }
 }
@@ -514,8 +601,17 @@ void watch_user()
         printf("请输入您的id\n");
         int id;
         ID_GET(id);
-        //user *searchworker(id);
-        printf("查看成功\n");
+        worker * curr = searchWorker(id);
+    	if(curr == NULL)
+    	{
+            printf("查无此人\n");
+    		continue;
+    	}else if(curr->_user == NULL)
+    	{
+            printf("您还没有指定服务对象\n");
+    		return;
+    	}
+        printf("您的服务对象是id为%d的%s\n", curr->_user->_id, curr->_user->_name);
         break;
     }
 }
@@ -526,12 +622,27 @@ void set_user()
         printf("请输入服务人员的id\n");
         int id;
         ID_GET(id);
-        user* pre = searchWorker(id);//curr为null
+        worker* pre = searchWorker(id);//curr为null
+    	if(pre == NULL)
+    	{
+            printf("查无此服务人员\n");
+            continue;
+        }
         printf("请输入服务对象的id\n");
         int id2;
         ID_GET(id2);
         user* curr = searchUser(id);//curr为null
-        pre = curr;
+        if(curr == NULL)
+        {
+            printf("查无此入住人\n");
+            continue;
+        }
+        if (pre->_user != NULL)
+        {
+            printf("您已有服务对象\n");
+            return;
+        }
+        pre->_user = curr;
         printf("设置成功\n");
         break;
     }
@@ -552,14 +663,19 @@ void manage_accounts()
         {
         case 1:
             add_worker();
+        	break;
         case 2:
             modify_worker();
+        	break;
         case 3:
             delete_worker();
+        	break;
         case 4:
             watch_user();
+        	break;
         case 5:
             set_user();
+        	break;
         case 6:
             return;
         default:

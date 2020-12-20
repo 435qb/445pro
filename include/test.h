@@ -43,9 +43,7 @@ void deleteWorker(int id);
 //通过服务人员id返回入住人地址 找不到返回NULL
 user *searchUserofWorker(int id);
 
-
-//通过场馆id返回：1成功 0等待
-int is_queue_full(int id);
 user* createUser();
+facil* searchFacil(int id);
 
 #endif
